@@ -14,4 +14,4 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-console.log(store.getState);
+console.log(store.getState());

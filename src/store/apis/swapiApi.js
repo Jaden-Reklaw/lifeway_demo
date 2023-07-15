@@ -1,19 +1,25 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const swapiApi = createApi({
     reducerPath: 'swapiApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://swapi.dev/api/' }),
     endpoints: (builder) => ({
-        getCharacterByName: builder.query({
-          query: (characterName) => `people/?search=${characterName}`,
+        getCharactersByName: builder.query({
+          query: (characterName) => ({
+            url: `people/?search=${characterName}`,
+          })
+        }),
+        getStarShip: builder.query({
+          query: (id) => ({
+            url: `starships${id}`,
+          })
         }),
         getFilm: builder.query({
-          query: (filmUrl) => filmUrl.replace('http://', 'https://'),
-        }),
-        getStarship: builder.query({
-          query: (starshipUrl) => starshipUrl.replace('http://', 'https://'),
-        }),
+          query: (id) => ({
+            url: `films${id}`,
+          })
+        })
     }),
 });
 
-export const { useGetCharacterByNameQuery, useGetFilmQuery, useGetStarshipQuery } = swapiApi;
+export const { useGetCharactersByNameQuery, useGetStarShipQuery, useGetFilmQuery } = swapiApi;
