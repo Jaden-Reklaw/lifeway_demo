@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLazyGetCharactersByNameQuery } from "../store/apis/swapiApi";
 import { Button } from "@mui/base";
 import { Grid } from "@mui/material";
 import CharacterList from "../components/CharactersList";
+import { addCharacters } from "../store/slice/charactersSlice";
+import { useDispatch, useSelector } from 'react-redux';
 
 const HomePage = () => {
+    const dispatch = useDispatch();
+    const characters = useSelector((state) => {
+      return state.character.data;
+    })
 
     const [searchTerm, setSearchTerm] = useState('');
     const [getCharactersByName, results] = useLazyGetCharactersByNameQuery();
@@ -21,6 +27,14 @@ const HomePage = () => {
       }
     };
 
+    useEffect(() => {
+      if(results.data) {
+        console.log("results", results);
+        dispatch(addCharacters(results.data.results));
+      }
+    }, [results, dispatch])
+
+    console.log("characters", characters);
     return (
       <Grid container display="flex" justifyContent="center" alignItems="center">
         <h1>Lifeway Demo App</h1>
@@ -30,7 +44,7 @@ const HomePage = () => {
           <Button onClick={handleSearch}>Search</Button>
         </form>
         
-        {results ? <CharacterList characters={results?.data?.results || []}/>: false}
+        <CharacterList characters={characters}/>
         
       </Grid>
   );
