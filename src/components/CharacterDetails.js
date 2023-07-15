@@ -1,17 +1,30 @@
 import StarshipsList from './StarshipsList';
 import FilmsList from './FilmsList';
+import { Card, CardContent, Typography } from '@mui/material';
 
 const CharacterDetails = ({ character }) => {
 
     return (
-        <div>
-            <h2>Character Details</h2>
+        <Card sx={{ maxWidth: 1000 }}>
+            <CardContent>
+            <Typography  variant="h5" component="div">
+                {character.name}
+            </Typography>
+            <hr />
             {JSON.stringify(character)}
-            <h2>Starships Details</h2>
+            <Typography  variant="h5" component="div">
+                Starships
+            </Typography>
+            <hr />
             <StarshipsList starships={character.starships} />
-            <h2>Films Details</h2>
+            <Typography  variant="h5" component="div">
+                Films
+            </Typography>
+            <hr />
             <FilmsList films={character.films} />
-        </div>
+            </CardContent>
+            
+        </Card>
     );
 
 };

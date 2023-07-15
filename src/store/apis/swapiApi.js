@@ -22,4 +22,4 @@ export const swapiApi = createApi({
     }),
 });
 
-export const { useGetCharactersByNameQuery, useGetStarShipQuery, useGetFilmQuery } = swapiApi;
+export const { useLazyGetCharactersByNameQuery, useGetStarShipQuery, useGetFilmQuery } = swapiApi;

@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import CharacterDetails from "./CharacterDetails";
 
 const CharacterList = ({ characters }) => {

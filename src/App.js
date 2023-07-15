@@ -1,27 +1,20 @@
-import CharacterList from "./components/CharactersList";
-import StarshipsList from "./components/StarshipsList";
-import { useGetCharactersByNameQuery } from "./store/apis/swapiApi";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import ProfilePage from "./pages/ProfilePage";
+
 
 function App() {
-
-  const {data, isFetching, isError} = useGetCharactersByNameQuery("Bo");
-  
-  if(isFetching) {
-    return <div>Loading...</div>
-  }
-
-  const { starships } = data.results[0];
-
-  if(isError) {
-    return <div>{JSON.stringify(isError)}</div>
-  }
-
-  return (
-    <div className="App">
-      <h1>Lifeway Demo App</h1>
-      <CharacterList characters={data.results || []}/>
-    </div>
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"  element={<HomePage />}/>
+        <Route path="/profile/:id" element={<ProfilePage />} />
+      </Routes>
+    </BrowserRouter>
   );
+  
+ 
 }
 
 export default App;
