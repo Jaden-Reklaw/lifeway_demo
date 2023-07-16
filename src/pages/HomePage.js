@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLazyGetCharactersByNameQuery } from "../store/apis/swapiApi";
-import { Button } from "@mui/base";
-import { Grid } from "@mui/material";
-import CharacterList from "../components/CharactersList";
+import { Box, FormControl, Grid, Input, InputAdornment, InputLabel, TextField } from "@mui/material";
 import { addCharacters } from "../store/slice/charactersSlice";
 import { useDispatch, useSelector } from 'react-redux';
+import ProfileLink from "../components/ProfileLink";
+import { CiSearch } from 'react-icons/ci'
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -29,22 +29,34 @@ const HomePage = () => {
 
     useEffect(() => {
       if(results.data) {
-        console.log("results", results);
         dispatch(addCharacters(results.data.results));
       }
     }, [results, dispatch])
 
-    console.log("characters", characters);
     return (
-      <Grid container display="flex" justifyContent="center" alignItems="center">
+      <Grid>
         <h1>Lifeway Demo App</h1>
         <form onSubmit={handleSearch}>
-          <label>Search Character</label>
-          <input value={searchTerm} onChange={handleChange} />
-          <Button onClick={handleSearch}>Search</Button>
+            <TextField
+              value={searchTerm} 
+              id="character_search" 
+              label="Search Character" 
+              variant="filled" 
+              onChange={handleChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CiSearch />
+                  </InputAdornment>
+                ),
+              }}
+          />
+          
         </form>
         
-        <CharacterList characters={characters}/>
+        {
+          characters.map(character => <ProfileLink character={character} />)
+        }
         
       </Grid>
   );
