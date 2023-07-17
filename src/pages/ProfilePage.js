@@ -21,7 +21,7 @@ const ProfilePage = () => {
     return (
         <div>
             <h1>Profile Page</h1>
-            {character ? <CharacterDetail character={character}/> : character}
+            {character ? <CharacterDetail key={character.name} character={character}/> : character}
         </div>
     );
 }

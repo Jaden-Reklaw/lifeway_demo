@@ -4,7 +4,7 @@ const StarshipsList = ({starships}) => {
 
     return (
         <div>
-            {starships.map(starship => <StarshipDetails key={starship} starship={starship}/>)}
+            {starships.map((starship, index) => <StarshipDetails key={"starship"+ index} starship={starship}/>)}
         </div>
     );
 }

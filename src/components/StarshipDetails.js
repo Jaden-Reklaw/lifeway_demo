@@ -11,7 +11,7 @@ const StarshipDetails = ({starship}) => {
         return <div>{isError}</div>
     }
     return (
-        <div>
+        <div key={starship.model}>
             {JSON.stringify(data)}
         </div>
     );

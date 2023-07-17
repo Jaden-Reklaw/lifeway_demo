@@ -3,8 +3,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 export const charactersSlice = createSlice({
     name: 'character',
     initialState: {
-        data: [],
-        character: {}
+        data: []
     },
     reducers: {
         addCharacters(state, action) {
