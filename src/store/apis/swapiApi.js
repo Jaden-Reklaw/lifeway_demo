@@ -18,8 +18,18 @@ export const swapiApi = createApi({
           query: (id) => ({
             url: `films${id}`,
           })
+        }),
+        getSpecies: builder.query({
+          query: (id) => ({
+            url:`species${id}`
+          })
         })
     }),
 });
 
-export const { useLazyGetCharactersByNameQuery, useGetStarShipQuery, useGetFilmQuery } = swapiApi;
+export const { 
+  useLazyGetCharactersByNameQuery, 
+  useGetStarShipQuery, 
+  useGetFilmQuery,
+  useGetSpeciesQuery 
+} = swapiApi;

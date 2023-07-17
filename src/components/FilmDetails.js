@@ -1,3 +1,4 @@
+import { Box, Typography } from "@mui/material";
 import { useGetFilmQuery } from "../store/apis/swapiApi";
 
 const FilmDetails = ({film}) => {
@@ -11,9 +12,18 @@ const FilmDetails = ({film}) => {
         return <div>{isError}</div>
     }
     return (
-        <div>
-            {JSON.stringify(data)}
-        </div>
+        <Box>
+            <Typography  variant="h6" component="div">
+                Title: {data.title}
+            </Typography>
+            <Typography  variant="h6" component="div">
+                Episode: {data.episode_id}
+            </Typography>
+            <Typography  variant="h6" component="div">
+                Opening Crawl: {data.opening_crawl}
+            </Typography>
+            <br />
+        </Box>
     );
 }
  

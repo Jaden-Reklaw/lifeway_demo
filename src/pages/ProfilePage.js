@@ -2,6 +2,7 @@ import CharacterDetail from '../components/CharacterDetails';
 import { useParams } from "react-router-dom";
 import { useLazyGetCharactersByNameQuery } from "../store/apis/swapiApi";
 import { useEffect } from "react";
+import { Container } from '@mui/material';
 
 const ProfilePage = () => {
     const { id } = useParams();
@@ -19,10 +20,9 @@ const ProfilePage = () => {
     } 
 
     return (
-        <div>
-            <h1>Profile Page</h1>
+        <Container sx={{justifyContent:"center", marginTop:1}}>
             {character ? <CharacterDetail key={character.name} character={character}/> : character}
-        </div>
+        </Container>
     );
 }
  

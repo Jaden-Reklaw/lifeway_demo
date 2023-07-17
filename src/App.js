@@ -6,21 +6,16 @@ import NavigationBar from "./components/NavBar/NavigationBar";
 
 
 function App() {
+  
   return(
-    <>
-      
       <BrowserRouter>
-      <NavigationBar />
+        <NavigationBar />
         <Routes>
           <Route path="/"  element={<HomePage />}/>
           <Route path="/profile/:id" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
-    </>
-    
   );
-  
- 
 }
 
 export default App;

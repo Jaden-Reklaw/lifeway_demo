@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { Search } from './Search';
 import { SearchIconWrapper } from './SearchIconWrapper';
@@ -15,6 +15,8 @@ import { StyledInputBase } from './StyledInputBase';
 import { useLazyGetCharactersByNameQuery } from '../../store/apis/swapiApi';
 
 export default function NavigationBar() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
   const [getCharactersByName, results] = useLazyGetCharactersByNameQuery();
@@ -24,15 +26,14 @@ export default function NavigationBar() {
   }
   
   const handleSearch = (event) => {
-    if(searchTerm !== '') {
+    
+    if(location.pathname !== '/' && event.key === 'Enter') {
+      navigate('/');
+    }
+
+    if(searchTerm !== '' && event.key === 'Enter') {
       getCharactersByName(searchTerm);
       setSearchTerm('');
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      handleSearch(event);
     }
   };
 
@@ -44,7 +45,7 @@ export default function NavigationBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{backgroundColor:'Black'}} position="static">
+      <AppBar sx={{backgroundColor:'#2b2e32'}} position="static">
         <Toolbar>
         <Typography
             variant="h6"
@@ -69,7 +70,7 @@ export default function NavigationBar() {
             <StyledInputBase
               value={searchTerm}
               onChange={handleChange}
-              onKeyDown={handleKeyDown}
+              onKeyDown={handleSearch}
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />

@@ -1,3 +1,4 @@
+import { Box, Typography } from "@mui/material";
 import { useGetStarShipQuery } from "../store/apis/swapiApi";
 
 const StarshipDetails = ({starship}) => {
@@ -11,9 +12,22 @@ const StarshipDetails = ({starship}) => {
         return <div>{isError}</div>
     }
     return (
-        <div key={starship.model}>
-            {JSON.stringify(data)}
-        </div>
+        <Box>
+            <Typography  variant="h6" component="div">
+                Ship: {data.name}
+            </Typography>
+            <Typography  variant="h6" component="div">
+                Model: {data.model}
+            </Typography>
+            <Typography  variant="h6" component="div">
+                Manufacturer: {data.manufacturer}
+            </Typography>
+            <Typography  variant="h6" component="div">
+                Credits: {data.cost_in_credits}
+            </Typography>
+            <br />
+        </Box>
+        
     );
 }
  
