@@ -7,7 +7,7 @@ export const charactersSlice = createSlice({
     },
     reducers: {
         addCharacters(state, action) {
-            return {...state, data: action.payload}
+            return { data: action.payload }
         }
     }
 });

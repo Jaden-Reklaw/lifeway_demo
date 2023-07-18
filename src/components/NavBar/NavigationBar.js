@@ -15,18 +15,19 @@ import { StyledInputBase } from './StyledInputBase';
 import { useLazyGetCharactersByNameQuery } from '../../store/apis/swapiApi';
 
 export default function NavigationBar() {
+  
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [getCharactersByName, results] = useLazyGetCharactersByNameQuery();
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value)
-  }
+    setSearchTerm(event.target.value);
+  };
   
   const handleSearch = (event) => {
-    
     if(location.pathname !== '/' && event.key === 'Enter') {
       navigate('/');
     }
@@ -41,7 +42,7 @@ export default function NavigationBar() {
     if(results.data) {
       dispatch(addCharacters(results.data.results));
     }
-  }, [results, dispatch])
+  }, [results, dispatch]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -55,13 +56,13 @@ export default function NavigationBar() {
             sx={{
               flexGrow: 1,
               display: { xs: 'none', sm: 'block' },
-              color: 'yellow', // Set the text color to yellow
-              textDecoration: 'none', // Remove underline for the link
+              color: '#FFE300', 
+              textDecoration: 'none',
             }}
           >
-            Starwar's Universe
+            Star War's Universe
           </Typography>
-          <Button component={Link} to="/" color="inherit">Home</Button>
+          <Button component={Link} to="/" sx={{color: '#FFE300'}}>Home</Button>
 
           <Search>
             <SearchIconWrapper>

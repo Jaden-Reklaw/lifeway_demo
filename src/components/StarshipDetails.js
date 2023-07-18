@@ -1,16 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { useGetStarShipQuery } from "../store/apis/swapiApi";
 
 const StarshipDetails = ({starship}) => {
     const {data, isFetching, isError } = useGetStarShipQuery(starship.replace("https://swapi.dev/api/starships", ''));
 
     if(isFetching) {
-        return <div>Loading...</div>
+        return <Skeleton animation="wave" />
     }
 
     if(isError) {
         return <div>{isError}</div>
     }
+
     return (
         <Box>
             <Typography  variant="h6" component="div">
@@ -27,7 +28,6 @@ const StarshipDetails = ({starship}) => {
             </Typography>
             <br />
         </Box>
-        
     );
 }
  

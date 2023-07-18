@@ -1,11 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { useGetFilmQuery } from "../store/apis/swapiApi";
 
 const FilmDetails = ({film}) => {
     const {data, isFetching, isError} = useGetFilmQuery(film.replace('https://swapi.dev/api/films', ''));
 
     if(isFetching) {
-        return <div>Loading...</div>
+        return <Skeleton animation="wave" />
     }
 
     if(isError) {

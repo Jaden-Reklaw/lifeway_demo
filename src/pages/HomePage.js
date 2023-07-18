@@ -1,6 +1,7 @@
-import { Container } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useSelector } from 'react-redux';
 import ProfileLink from "../components/ProfileLink";
+import Jumbotron from "../components/Jumbotron";
 
 
 const HomePage = () => {
@@ -10,13 +11,17 @@ const HomePage = () => {
     });
 
     return (
-      <Container sx={{justifyContent:"center", marginTop:1}}>
-        
-        {
-          characters.map(character => <ProfileLink key={character.name} character={character} />)
-        }
+      <>
+        <Jumbotron />
+        <Grid
+        container
+        direction="column"
+        justifyContent="space-between"
+        alignItems="center">
+          { characters.map(character => <ProfileLink key={character.name} character={character} />)}
+        </Grid>
+      </>
       
-      </Container>
   );
 }
  

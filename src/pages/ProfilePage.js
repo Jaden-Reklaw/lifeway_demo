@@ -1,4 +1,4 @@
-import CharacterDetail from '../components/CharacterDetails';
+import CharacterCard from '../components/CharacterCard';
 import { useParams } from "react-router-dom";
 import { useLazyGetCharactersByNameQuery } from "../store/apis/swapiApi";
 import { useEffect } from "react";
@@ -11,7 +11,6 @@ const ProfilePage = () => {
     useEffect(() => {
         getCharactersByName(id.replace('_', ' '))
     }, [getCharactersByName, id])
-
     
     let character;
 
@@ -21,7 +20,7 @@ const ProfilePage = () => {
 
     return (
         <Container sx={{justifyContent:"center", marginTop:1}}>
-            {character ? <CharacterDetail key={character.name} character={character}/> : character}
+            { character ? <CharacterCard key={character.name} character={character}/> : character }
         </Container>
     );
 }

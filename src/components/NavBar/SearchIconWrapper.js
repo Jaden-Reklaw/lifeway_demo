@@ -8,7 +8,7 @@ export const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: 'yellow', // Set the icon color to yellow
+  color: '#FFE300', 
 }));
 
   
